@@ -84,10 +84,11 @@ function getNextStatus(mole) {
         case 'fed':
             mole.next = getInterval();
             mole.status = 'leaving';
-            mole.node.children[0].src = "./images/mole-leaving.png";
+            // mole.node.children[0].src = "./images/mole-leaving.png";
             break;
         case 'leaving':
             mole.next = getGoneInterval();
+            mole.king = getKingStatus();
             mole.status = 'gone';
             mole.node.children[0].classList.add('gone');
             break;
@@ -96,14 +97,54 @@ function getNextStatus(mole) {
             mole.next = getHungryInterval();
             mole.node.children[0].classList.add('hungry');
             mole.node.children[0].classList.remove('gone');
-            mole.node.children[0].src = "./images/mole-hungry.png";
+            // mole.node.children[0].src = "./images/mole-hungry.png";
             break;
         case 'hungry':
             mole.status = 'sad';
             mole.next = getInterval();
-            mole.node.children[0].src = './images/mole-sad.png';
+            // mole.node.children[0].src = './images/mole-sad.png';
             mole.node.children[0].classList.remove('hungry');
     }
+
+    setImageSource(mole);
+}
+
+function setImageSource(mole) {
+    if(mole.king) {
+        switch(mole.status) {
+            case 'leaving':
+                mole.node.children[0].src = "./images/king-mole-leaving.png";
+                break;
+            case 'sad':
+                mole.node.children[0].src = "./images/king-mole-sad.png";
+                break;
+            case 'hungry':
+                mole.node.children[0].src = "./images/king-mole-hungry.png";
+                break;
+            case 'fed':
+                mole.node.children[0].src = "./images/king-mole-fed.png"
+                break;
+        }
+    } else {
+        switch(mole.status) {
+            case 'leaving':
+                mole.node.children[0].src = "./images/mole-leaving.png";
+                break;
+            case 'sad':
+                mole.node.children[0].src = "./images/mole-sad.png";
+                break;
+            case 'hungry':
+                mole.node.children[0].src = "./images/mole-hungry.png";
+                break;
+            case 'fed':
+                mole.node.children[0].src = "./images/mole-fed.png"
+                break;
+        }
+    } 
+}
+
+function getKingStatus() {
+    return Math.random() > 0.9;
 }
 
 let runAgainAt = Date.now() + 100;
@@ -130,12 +171,15 @@ function feed(event) {
 
     mole.status = 'fed';
     mole.next = getInterval();
-    mole.node.children[0].src = './images/mole-fed.png';
+    setImageSource(mole);
     mole.node.children[0].classList.remove('hungry');
 
-    score++;
+    if(mole.king)
+        score += 2;
+    else 
+        score += 1;
 
-    if(score >= 3)
+    if(score >= 20)
         win();
 }
 
