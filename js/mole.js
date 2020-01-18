@@ -181,6 +181,8 @@ function feed(event) {
 
     if(score >= 20)
         win();
+
+    document.querySelector('.worm-container').style.width = `${5 * score}%`;
 }
 
 function win() {

@@ -53,3 +53,15 @@ body {
 .hungry {
     cursor: url("../images/cursor-worm.png"), default;
 }
+
+.worm {
+    width: 1660px;
+}
+
+.worm-box {
+    width: 1660px;
+}
+
+.worm-container {
+    overflow: hidden;
+}
