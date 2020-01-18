@@ -118,9 +118,22 @@ function nextFrame() {
     requestAnimationFrame(nextFrame);
 }
 
+function feed(event) {
+    if(event.target.tagName !== 'IMG' || !event.target.classList.contains('hungry')) {
+        return;
+    }
+    const mole = event.target;
+    console.log(mole);
+
+    mole.status = 'fed';
+    mole.next = getInterval();
+    mole.src = './images/mole-fed.png';
+    mole.classList.remove('hungry');
+}
 
 function init() {
     nextFrame();
+    document.querySelector('.container').addEventListener('click', feed);
 }
 
 init();
