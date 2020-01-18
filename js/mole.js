@@ -122,13 +122,13 @@ function feed(event) {
     if(event.target.tagName !== 'IMG' || !event.target.classList.contains('hungry')) {
         return;
     }
-    const mole = event.target;
+    const mole = moles[parseInt(event.target.dataset.index)];
     console.log(mole);
 
     mole.status = 'fed';
     mole.next = getInterval();
-    mole.src = './images/mole-fed.png';
-    mole.classList.remove('hungry');
+    mole.node.children[0].src = './images/mole-fed.png';
+    mole.node.children[0].classList.remove('hungry');
 }
 
 function init() {
