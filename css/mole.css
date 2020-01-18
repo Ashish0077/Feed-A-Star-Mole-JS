@@ -40,3 +40,12 @@ body {
     align-items: center;
     width: 25%;
 }
+
+.mole {
+    position: relative;
+    right: 30px;
+}
+
+.gone {
+    display: none;
+}
