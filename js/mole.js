@@ -79,6 +79,7 @@ function getHungryInterval() {
 function getNextStatus(mole) {
     switch (mole.status) {
         case 'sad':
+        case 'fed':
             mole.next = getInterval();
             mole.status = 'leaving';
             mole.node.children[0].src = "./images/mole-leaving.png";
