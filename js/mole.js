@@ -62,6 +62,8 @@ const moles = [
     },
 ]
 
+let score = 0;
+
 //functions fot getting interval of time (this makes the nextFrame() wait for x amount of time before updatin its state)
 function getInterval() {
     return Date.now() + 1000;
@@ -130,6 +132,16 @@ function feed(event) {
     mole.next = getInterval();
     mole.node.children[0].src = './images/mole-fed.png';
     mole.node.children[0].classList.remove('hungry');
+
+    score++;
+
+    if(score >= 3)
+        win();
+}
+
+function win() {
+    document.querySelector('.container').classList.add('gone');
+    document.querySelector('.win').classList.remove('gone');
 }
 
 function init() {
