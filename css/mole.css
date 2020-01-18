@@ -49,3 +49,7 @@ body {
 .gone {
     display: none;
 }
+
+.hungry {
+    cursor: url("../images/cursor-worm.png"), default;
+}
