@@ -25,3 +25,17 @@ body {
     width: 1920px;
     height: 1080px;
 }
+
+.hole {
+    background-color: black;
+    border-radius: 50%;
+    width: 267px;
+    height: 267px;
+}
+
+.hole-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
